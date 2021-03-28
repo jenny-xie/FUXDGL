@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button, Alert, Container } from 'react-bootstrap'
+import axios from 'axios'
 
 export default function InputForm() {
     const [transcript, setTranscript] = useState(null);
@@ -54,6 +55,12 @@ export default function InputForm() {
         e.preventDefault();
 
         //store files to database
+        axios.put(/uploadvid/, {video}).then(function(response){
+            console.log(response)
+        })
+        axios.put(/uploadtext/, {transcript}).then(function(response){
+            console.log(response)
+        })
         console.log(video);
         console.log(transcript);
     }

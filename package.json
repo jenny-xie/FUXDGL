@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jenny-xie/FUXDGL#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "concurrently": "^6.0.0",
     "react-router-dom": "^5.2.0"
   }
