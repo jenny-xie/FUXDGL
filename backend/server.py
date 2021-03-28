@@ -85,7 +85,7 @@ def uploadFiles():
     transcript_file = request.files['transcript']
     if transcript_file.filename != '':
         transcript_file.save(os.path.join(server.config['UPLOAD_PATH'],'transcript.vtt'))
-    return redirect(request.url)
+    return redirect('/')
 
 @server.route('/time')
 def get_current_time():
