@@ -16,35 +16,37 @@ db = client['database']
 col = db['transcripts']
 grid_fs = GridFS(db)
 
-@server.route('/uploadvid/', methods=['PUT'])
+@server.route('/uploadvid/', methods=['POST'])
 def uploadvid():
     #local copy
     video_file = request.files['video']
-    transcript_file = request.files['transcript']
+    
     if video_file.filename != '':
         video_file.save(os.path.join(server.config['UPLOAD_PATH'],'recording.mp4'))
+    
+
+    # with grid_fs.new_file(filename='recording.mp4') as fp:
+    #     fp.write(request.data)
+    #     file_id = fp._id
+
+    # if grid_fs.find_one(file_id) is not None:
+    #     return json.dumps({'status': 'File saved successfully'}), 200
+    # else:
+    #     return json.dumps({'status': 'Error occurred while saving file.'}), 500
+
+@server.route('/uploadtext/', methods=['POST'])
+def uploadtext():
+    transcript_file = request.files['transcript']
     if transcript_file.filename != '':
         transcript_file.save(os.path.join(server.config['UPLOAD_PATH'],'transcript.vtt'))
+    # with grid_fs.new_file(filename='transcript.vtt') as fp:
+    #     fp.write(request.data)
+    #     file_id = fp._id
 
-    with grid_fs.new_file(filename='recording.mp4') as fp:
-        fp.write(request.data)
-        file_id = fp._id
-
-    if grid_fs.find_one(file_id) is not None:
-        return json.dumps({'status': 'File saved successfully'}), 200
-    else:
-        return json.dumps({'status': 'Error occurred while saving file.'}), 500
-
-@server.route('/uploadtext/', methods=['PUT'])
-def uploadtext():
-    with grid_fs.new_file(filename='transcript.vtt') as fp:
-        fp.write(request.data)
-        file_id = fp._id
-
-    if grid_fs.find_one(file_id) is not None:
-        return json.dumps({'status': 'File saved successfully'}), 200
-    else:
-        return json.dumps({'status': 'Error occurred while saving file.'}), 500
+    # if grid_fs.find_one(file_id) is not None:
+    #     return json.dumps({'status': 'File saved successfully'}), 200
+    # else:
+    #     return json.dumps({'status': 'Error occurred while saving file.'}), 500
 
 @server.route('/splice/', methods=['POST'])
 def parse():
