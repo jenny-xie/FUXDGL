@@ -1,0 +1,25 @@
+{
+  "name": "fuxdgl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "npm install",
+    "build": "concurrently \"cd backend && pip install -r requirements.txt\" \"cd client && npm install",
+    "start": "concurrently \"cd backend && flask run\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jenny-xie/FUXDGL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jenny-xie/FUXDGL/issues"
+  },
+  "homepage": "https://github.com/jenny-xie/FUXDGL#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "react-router-dom": "^5.2.0"
+  }
+}

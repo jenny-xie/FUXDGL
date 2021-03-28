@@ -72,3 +72,13 @@ wincertstore              0.2
 xz                        5.2.5                
 zlib                      1.2.11            
 zstd                      1.4.9               
+click         7.1.2
+Flask         1.1.2
+itsdangerous  1.1.0
+Jinja2        2.11.3
+MarkupSafe    1.1.1
+pip           19.0.3
+python-dotenv 0.16.0
+setuptools    40.8.0
+Werkzeug      1.0.1
+
