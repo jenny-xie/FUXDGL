@@ -34,11 +34,19 @@ def uploadvid():
     # else:
     #     return json.dumps({'status': 'Error occurred while saving file.'}), 500
 
-@server.route('/uploadtext/', methods=['POST'])
-def uploadtext():
-    transcript_file = request.files['transcript']
-    if transcript_file.filename != '':
-        transcript_file.save(os.path.join(server.config['UPLOAD_PATH'],'transcript.vtt'))
+# @server.route('/uploadfiles/', methods=['POST'])
+# def uploadFiles():
+#     #local copy
+#     video_file = request.files['video']
+#     if video_file.filename != '':
+#         video_file.save(os.path.join(server.config['UPLOAD_PATH'],'recording.mp4'))
+
+#     transcript_file = request.files['transcript']
+#     if transcript_file.filename != '':
+#         transcript_file.save(os.path.join(server.config['UPLOAD_PATH'],'transcript.vtt'))
+
+    #possibly needs redirect to localhost3000:home
+
     # with grid_fs.new_file(filename='transcript.vtt') as fp:
     #     fp.write(request.data)
     #     file_id = fp._id
@@ -68,16 +76,16 @@ def retrieve():
     return response
 
 @server.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        uploaded_file = request.files['video']
-        uploaded_file2 = request.files['transcript']
-        if uploaded_file.filename != '':
-            uploaded_file.save(os.path.join(server.config['UPLOAD_PATH'],'recording.mp4'))
-        if uploaded_file2.filename != '':
-            uploaded_file2.save(os.path.join(server.config['UPLOAD_PATH'],'transcript.vtt'))
-        return redirect(url_for('index'))
-    return render_template('index.html')
+def uploadFiles():
+    #local copy
+    video_file = request.files['video']
+    if video_file.filename != '':
+        video_file.save(os.path.join(server.config['UPLOAD_PATH'],'recording.mp4'))
+
+    transcript_file = request.files['transcript']
+    if transcript_file.filename != '':
+        transcript_file.save(os.path.join(server.config['UPLOAD_PATH'],'transcript.vtt'))
+    return redirect(request.url)
 
 @server.route('/time')
 def get_current_time():
