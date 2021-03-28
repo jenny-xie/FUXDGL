@@ -73,19 +73,29 @@ export default function InputForm() {
         <>
             <Container>
                 {error && <Alert variant='danger'>{error}</Alert>}
+                <br/>
+                <h3 style={{textAlign: 'center'}}>
+                    Insert a Video and Transcript to be Parsed
+                </h3>
                 <form method="POST" action="" enctype="multipart/form-data">
                     <div>
-                        <label for="transcript">Transcript</label>
+                        <label for="transcript"><b>Transcript</b></label>
+                        <br/>
                         <input type="file" name="transcript" />
                     </div>
-                    
+                    <br/>
                     <div>
-                        <label for="video">Video</label>
+                        <label for="video"><b>Video</b></label>
+                        <br/>
                         <input type="file" name="video" />
                     </div>
-                    
+                    <br/>
                     <Button type="submit" value="Submit">Submit</Button>
                 </form>
+                <br/>
+
+                <div>
+                    <h3 style={{textAlign: 'center'}}>Choose the Start and Stop Word</h3>
                 <Form onSubmit={formSubmit} >
                     {/* <Form.Group controlId='transcript' name='transcript'>
                         <Form.Label>Transcript</Form.Label>
@@ -106,6 +116,7 @@ export default function InputForm() {
                     <Button type='submit'>Submit</Button>
                 </Form>
                 <a href="/returnfile" target="blank"><button class='btn btn-default'>Download!</button></a>
+                </div>
             </Container>
         </>
     )

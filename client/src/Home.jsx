@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
 import InputForm from './components/InputForm'
+import { Container } from 'react-bootstrap'
 
 export default function Homepage() {
     const [time, setTime] = useState(0);
@@ -13,8 +14,10 @@ export default function Homepage() {
     return (
         <>
             <Header></Header>
-            <h1>Time: {time}</h1>
-            <InputForm></InputForm>
+            {/* <h1>Time: {time}</h1> */}   
+            <Container >
+                <InputForm></InputForm>
+            </Container>
         </>
     )
 }
