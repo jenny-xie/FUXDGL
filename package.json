@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "npm install",
-    "build": "concurrently \"cd backend && pip install -r requirements.txt\" \"cd client && npm install",
+    "build": "concurrently \"cd backend && pip install -r requirements.txt\" \"cd client && npm install\"",
     "start": "concurrently \"cd backend && flask run\" \"cd client && npm start\""
   },
   "repository": {

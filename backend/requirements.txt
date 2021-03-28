@@ -81,4 +81,3 @@ pip           19.0.3
 python-dotenv 0.16.0
 setuptools    40.8.0
 Werkzeug      1.0.1
-
