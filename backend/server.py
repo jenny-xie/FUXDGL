@@ -52,18 +52,7 @@ def parse():
     startword = fields["start"]
     stopword = fields["stop"]
     splice(startword, stopword)
-    if grid_fs.find_one('splice.mp4') is not None:
-        return json.dumps({'status': 'File saved successfully'}), 200
-    else:
-        return json.dumps({'status': 'Error occurred while saving file.'}), 500
-
-@server.route('/download/')
-def retrieve():
-    grid_fs_file = grid_fs.find_one({'filename': splice.mp4})
-    response = make_response(grid_fs_file.read())
-    response.headers['Content-Type'] = 'application/octet-stream'
-    response.headers["Content-Disposition"] = "attachment; filename={}".format(file_name)
-    return response
+    return send_file('spliced.mp4', as_attachment=True)
 
 @server.route('/', methods=['GET', 'POST'])
 def index():
