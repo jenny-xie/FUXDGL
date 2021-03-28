@@ -1,10 +1,12 @@
 import time
 import json
 from gridfs import GridFS
+from tempfile import NamedTemporaryFile
 from pymongo import MongoClient
 from flask import Flask, make_response, flash
 from flask import request, render_template, send_file, redirect, url_for
 from Parser import splice
+from shutil import copyfileobj
 import os
 
 server = Flask(__name__)
@@ -37,13 +39,22 @@ def uploadvid():
 #     if transcript_file.filename != '':
 #         transcript_file.save(os.path.join(server.config['UPLOAD_PATH'],'transcript.vtt'))
 
-@server.route('/splice/', methods=['POST'])
+@server.route('/splice/', methods=['GET', 'POST'])
 def parse():
     fields = request.get_json().get('fields')
     startword = fields["start"]
     stopword = fields["stop"]
     splice(startword, stopword)
-    return send_file('spliced.mp4', as_attachment=True, attachment_filename="spliced.mp4")
+    tempmp = NamedTemporaryFile(mode='w+b', suffix='mp4')
+    spli = open('spliced.mp4', 'rb')
+    copyfileobj(spli, tempmp)
+    spli.close()
+    return send_file(tempmp, as_attachment=True, attachment_filename='spliced.mp4')
+
+@server.route('/returnfile')
+def returnfile():
+    return send_file('spliced.mp4', as_attachment=True, attachment_filename='spliced.mp4')
+
 
 @server.route('/', methods=['GET', 'POST'])
 def uploadFiles():

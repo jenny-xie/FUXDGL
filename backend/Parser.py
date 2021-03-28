@@ -36,4 +36,5 @@ def splice(start: str, stop: str):
         clips.append(clip.subclip(segment[0], segment[1]))
     final = concatenate_videoclips(clips)
     final.write_videofile('spliced.mp4')
-    video_clip.reader.close()
+    final.close()
+    return None

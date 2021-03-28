@@ -105,6 +105,7 @@ export default function InputForm() {
                     </Form.Group>
                     <Button type='submit'>Submit</Button>
                 </Form>
+                <a href="/returnfile" target="blank"><button class='btn btn-default'>Download!</button></a>
             </Container>
         </>
     )
