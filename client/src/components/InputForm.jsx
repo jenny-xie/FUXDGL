@@ -56,12 +56,12 @@ export default function InputForm() {
         e.preventDefault();
 
         //store files to database
-        axios.put(/uploadvid/, {video}).then(function(response){
-            console.log(response)
-        })
-        axios.put(/uploadtext/, {transcript}).then(function(response){
-            console.log(response)
-        })
+        // axios.post(/uploadvid/, {video}).then(function(response){
+        //     console.log(response)
+        // })
+        // axios.post(/uploadtext/, {transcript}).then(function(response){
+        //     console.log(response)
+        // })
         axios.post(/splice/, { fields }).then(function(response){
             console.log(response)
         })
@@ -73,15 +73,20 @@ export default function InputForm() {
         <>
             <Container>
                 {error && <Alert variant='danger'>{error}</Alert>}
-                <Form onSubmit={formSubmit}>
-                    <Form.Group controlId='transcript'>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <p>video<input type="file" name="video" /></p>
+                    <p>transcript<input type="file" name="transcript" /></p>
+                    <p><input type="submit" value="Submit" /></p>
+                </form>
+                <Form onSubmit={formSubmit} >
+                    {/* <Form.Group controlId='transcript' name='transcript'>
                         <Form.Label>Transcript</Form.Label>
                         <Form.Control type="file" onChange={transcriptChange}/>
                     </Form.Group>
-                    <Form.Group controlId='video'>
+                    <Form.Group controlId='video' name='video'>
                         <Form.Label>Video</Form.Label>
                         <Form.Control type="file" onChange={videoChange}/>
-                    </Form.Group>
+                    </Form.Group> */}
                     <Form.Group controlId='start'>
                         <Form.Label>Start Word</Form.Label>
                         <Form.Control type="text" onChange={fieldsChange}/>
