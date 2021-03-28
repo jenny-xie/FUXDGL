@@ -43,7 +43,7 @@ def parse():
     startword = fields["start"]
     stopword = fields["stop"]
     splice(startword, stopword)
-    return send_file('spliced.mp4', as_attachment=True)
+    return send_file('spliced.mp4', as_attachment=True, attachment_filename="spliced.mp4")
 
 @server.route('/', methods=['GET', 'POST'])
 def uploadFiles():
