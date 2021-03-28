@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Button, Alert, Container } from 'react-bootstrap'
 import axios from 'axios'
+import { bodyparser } from 'body-parser'
 
 export default function InputForm() {
     const [transcript, setTranscript] = useState(null);
@@ -59,6 +60,9 @@ export default function InputForm() {
             console.log(response)
         })
         axios.put(/uploadtext/, {transcript}).then(function(response){
+            console.log(response)
+        })
+        axios.post(/splice/, { fields }).then(function(response){
             console.log(response)
         })
         console.log(video);
