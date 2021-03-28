@@ -1,10 +1,22 @@
 import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+
+//pages
+import Home from './Home'
+import About from './About'
 
 function App() {
   return (
-    <div>
-      homepage
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" >
+          <Home />
+        </Route>
+        <Route path='/about'>
+          <About />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
