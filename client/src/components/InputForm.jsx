@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button, Alert } from 'react-bootstrap'
+import { Form, Button, Alert, Container } from 'react-bootstrap'
 
 export default function InputForm() {
     const [transcript, setTranscript] = useState(null);
@@ -13,7 +13,7 @@ export default function InputForm() {
 
     const transcriptChange = (e) => {
         const selected = e.target.files[0];
-        
+        console.log(selected.type)
         if (selected && fileFormats['transcript'].includes(selected.type)) {
             setTranscript(selected);
             setError('')
@@ -43,18 +43,20 @@ export default function InputForm() {
 
     return (
         <>
-            {error && <Alert variant='danger'>{error}</Alert>}
-            <Form onSubmit={formSubmit}>
-                <Form.Group controlId='transcript'>
-                    <Form.Label>Transcript</Form.Label>
-                    <Form.Control type="file" onChange={transcriptChange}/>
-                </Form.Group>
-                <Form.Group controlId='video'>
-                    <Form.Label>Video</Form.Label>
-                    <Form.Control type="file" onChange={videoChange}/>
-                </Form.Group>
-                <Button type='submit'>Submit</Button>
-            </Form>
+            <Container>
+                {error && <Alert variant='danger'>{error}</Alert>}
+                <Form onSubmit={formSubmit}>
+                    <Form.Group controlId='transcript'>
+                        <Form.Label>Transcript</Form.Label>
+                        <Form.Control type="file" onChange={transcriptChange}/>
+                    </Form.Group>
+                    <Form.Group controlId='video'>
+                        <Form.Label>Video</Form.Label>
+                        <Form.Control type="file" onChange={videoChange}/>
+                    </Form.Group>
+                    <Button type='submit'>Submit</Button>
+                </Form>
+            </Container>
         </>
     )
 }
