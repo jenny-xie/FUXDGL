@@ -74,9 +74,17 @@ export default function InputForm() {
             <Container>
                 {error && <Alert variant='danger'>{error}</Alert>}
                 <form method="POST" action="" enctype="multipart/form-data">
-                    <p>video<input type="file" name="video" /></p>
-                    <p>transcript<input type="file" name="transcript" /></p>
-                    <p><input type="submit" value="Submit" /></p>
+                    <div>
+                        <label for="transcript">Transcript</label>
+                        <input type="file" name="transcript" />
+                    </div>
+                    
+                    <div>
+                        <label for="video">Video</label>
+                        <input type="file" name="video" />
+                    </div>
+                    
+                    <Button type="submit" value="Submit">Submit</Button>
                 </form>
                 <Form onSubmit={formSubmit} >
                     {/* <Form.Group controlId='transcript' name='transcript'>
