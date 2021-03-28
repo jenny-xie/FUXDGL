@@ -4,7 +4,7 @@ def splice(start: str, stop: str):
     start = start.lower()
     stop = stop.lower()
     raw = ''
-    raw = [x.strip('\n') for x in open('transcript.vtt', 'r').readlines()]
+    raw = [x.strip('\n') for x in open('uploads/transcript.vtt', 'r').readlines()]
     raw = [x.lower() for x in raw]
     raw = list(filter(None, raw))
     transcript = []
@@ -30,7 +30,7 @@ def splice(start: str, stop: str):
         if stop in speech[2]:
             times.append((start_time, speech[1]))
 
-    clip = VideoFileClip('recording.mp4')
+    clip = VideoFileClip('uploads/recording.mp4')
     clips = []
     for segment in times:
         clips.append(clip.subclip(segment[0], segment[1]))
