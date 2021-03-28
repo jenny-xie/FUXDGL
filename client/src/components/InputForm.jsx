@@ -76,7 +76,7 @@ export default function InputForm() {
                 <form method="POST" action="" enctype="multipart/form-data">
                     <p>video<input type="file" name="video" /></p>
                     <p>transcript<input type="file" name="transcript" /></p>
-                    <p><input type="submit" value="Submit" /></p>
+                    <button type="submit" value="Submit">Submit</button>
                 </form>
                 <Form onSubmit={formSubmit} >
                     {/* <Form.Group controlId='transcript' name='transcript'>
